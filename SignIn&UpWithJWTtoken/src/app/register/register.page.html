@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>register</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<br><br>
+
+<ion-content>
+
+  <ion-grid>
+    <form [formGroup] = "registrationForm" (ngSubmit) = "submit()">
+      <ion-row>
+        <ion-col>
+
+          <ion-item>
+            <ion-label position="stacked">name</ion-label>
+            <ion-input formControlName="name" autofocus="true" value=""></ion-input>
+          </ion-item>
+          <div *ngFor="let error of errorMessage.name">
+            <ng-container *ngIf="name.hasError(error.type) && (name.dirty || name.touched)">
+              <small class="error-message">{{ error.message }}</small>
+            </ng-container>
+          </div>
+
+
+          <ion-item>
+            <ion-label position="stacked">Email</ion-label>
+            <ion-input formControlName="email" type="email" value=""></ion-input>
+          </ion-item>
+          <div *ngFor="let error of errorMessage.email">
+            <ng-container *ngIf="email.hasError(error.type) && (email.dirty || email.touched)">
+              <small class="error-message">{{ error.message }}</small>
+            </ng-container>
+          </div>
+
+
+          <ion-item>
+            <ion-label position="stacked">Password</ion-label>
+            <ion-input formControlName="password" type="password" value=""></ion-input>
+          </ion-item>
+          <div *ngFor="let error of errorMessage.password">
+            <ng-container *ngIf="password.hasError(error.type) && (password.dirty || password.touched)">
+              <small class="error-message">{{ error.message }}</small>
+            </ng-container>
+          </div>
+
+          <ion-button [disabled]="!registrationForm.valid" type="submit" expand="block">
+            Submit
+            <ion-icon slot="end" name="create"></ion-icon>
+          </ion-button>
+
+        
+        </ion-col>
+      </ion-row>
+    </form>  
+  </ion-grid>
+
+
+
+</ion-content>
